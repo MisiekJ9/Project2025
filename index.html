@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waluto.calc</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Luckiest+Guy&family=Sofia&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Luckiest+Guy&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1><span id="pierwszy">WALUTO</span><span id="drugi">.CALC</span></h1>
+    </header>
+
+    <main>
+        <div class="kalkulator">
+            <label for="kwota">Kwota do przeliczenia:</label>
+            <input type="number" id="kwota" placeholder="Podaj kwotę do przeliczenia" min="0">
+
+            <label for="fromCurrency">z waluty:</label>
+            <select id="fromCurrency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="PLN">PLN</option>
+                <!-- Dodaj inne waluty -->
+            </select>
+
+            <label for="kwota_przeliczona">Kwota przeliczona:</label>
+            <input type="number" id="kwota_przeliczona" min="0">
+
+            <label for="toCurrency">na walutę:</label>
+            <select id="toCurrency">
+                <option value="PLN">PLN</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <!-- Dodaj inne waluty -->
+            </select>
+
+            <button id="przelicz" onclick="convertCurrency()">PRZELICZ TERAZ</button>
+
+            <div class="wynik">
+          
+            </div>
+        </div>
+<br>
+        <div class="kalkulator">
+            <div id="title">OBSŁUGIWANE WALUTY</div>
+            <div class="waluta_big">
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">USD</div>
+                <div class="waluta_name">Dolar amerykański</div>
+            </div>
+            <div class="B">
+                <img src="./usa.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">NOK</div>
+                <div class="waluta_name">Korona norweska</div>
+            </div>
+            <div class="B">
+                <img src="./norwegia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">AUD</div>
+                <div class="waluta_name">Dolar australijski</div>
+            </div>
+            <div class="B">
+                <img src="./australia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">CAD</div>
+                <div class="waluta_name">Dolar kanadyjski</div>
+            </div>
+            <div class="B">
+                <img src="./kanada.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">GPB</div>
+                <div class="waluta_name">Funt brytyjski</div>
+            </div>
+            <div class="B">
+                <img src="./wielka_brytania.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">CHF</div>
+                <div class="waluta_name">Frank szwajcarski</div>
+            </div>
+            <div class="B">
+                <img src="./szwajcaria.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">DKK</div>
+                <div class="waluta_name">Korona duńska</div>
+            </div>
+            <div class="B">
+                <img src="./dania.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">SEK</div>
+                <div class="waluta_name">Korona szwedzka</div>
+            </div>
+            <div class="B">
+                <img src="./szwecja.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">CZK</div>
+                <div class="waluta_name">Korona czeska</div>
+            </div>
+            <div class="B">
+                <img src="./czechy.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">ISK</div>
+                <div class="waluta_name">Korona islandzka</div>
+            </div>
+            <div class="B">
+                <img src="./islandia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">EEK</div>
+                <div class="waluta_name">Korona estońska</div>
+            </div>
+            <div class="B">
+                <img src="./estonia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">JPY</div>
+                <div class="waluta_name">Jen</div>
+            </div>
+            <div class="B">
+                <img src="./japonia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">HUF</div>
+                <div class="waluta_name">Forint</div>
+            </div>
+            <div class="B">
+                <img src="./węgry.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">RUR</div>
+                <div class="waluta_name">Rubel</div>
+            </div>
+            <div class="B">
+                <img src="./rosja.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">UAH</div>
+                <div class="waluta_name">Hrywna</div>
+            </div>
+            <div class="B">
+                <img src="./ukraina.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">BGN</div>
+                <div class="waluta_name">Lewa</div>
+            </div>
+            <div class="B">
+                <img src="./bułgaria.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">PLN</div>
+                <div class="waluta_name">Złoty</div>
+            </div>
+            <div class="B">
+                <img src="./polska.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">TRL</div>
+                <div class="waluta_name">Lira turecka</div>
+            </div>
+            <div class="B">
+                <img src="./turcja.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">ROL</div>
+                <div class="waluta_name">Lej rumuński</div>
+            </div>
+            <div class="B">
+                <img src="./rumunia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">MDL</div>
+                <div class="waluta_name">Lej mołdawski</div>
+            </div>
+            <div class="B">
+                <img src="./mołdawia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">MKD</div>
+                <div class="waluta_name">Denar macedońśki</div>
+            </div>
+            <div class="B">
+                <img src="./macedonia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">CSD</div>
+                <div class="waluta_name">Dinar serbski</div>
+            </div>
+            <div class="B">
+                <img src="./serbia.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">BAM</div>
+                <div class="waluta_name">Marka transferowa</div>
+            </div>
+            <div class="B">
+                <img src="./bośnia_i_hercegowina.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">ALL</div>
+                <div class="waluta_name">Lek</div>
+            </div>
+            <div class="B">
+                <img src="./albania.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+            <div class="waluta">
+                <div class="A">
+                <div class="waluta_title">EUR</div>
+                <div class="waluta_name">Euro</div>
+            </div>
+            <div class="B">
+                <img src="./unia_europejska.png">
+            </div>
+            <div style="clear:both"></div>
+            </div>
+          
+        </div>
+        </div>
+    </main>
+    
+    <script src="./script.js"></script>
+    
+</body>
+</html>
