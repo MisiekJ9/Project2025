@@ -1,6 +1,7 @@
 let selectBaseCurrency = document.getElementById('fromCurrency')
 let selectToConvertCurrency = document.getElementById('toCurrency')
 let inputBaseCurrency = document.getElementById('kwota')
+let error = document.getElementById("errorKalkulator")
 
 let selectedBaseCurrency
 let selectedToConvertCurrency
@@ -18,9 +19,11 @@ function updateToConvertCurrencyValue() {
 selectBaseCurrency.addEventListener('change', updateBaseCurrencyValue)
 selectToConvertCurrency.addEventListener('change', updateToConvertCurrencyValue)
 
+
 const apiKey = 'cur_live_3X5TpMpTz9M1m5bptONhtboPj8mZAvzaAgEAZEBH'
 
 function convertCurrency() {
+  error.innerHTML = ``
   let inputBaseCurrencyValue = inputBaseCurrency.value
   if (inputBaseCurrencyValue != 0 && inputBaseCurrencyValue != '') {
     const currencyUrl = `https://api.currencyapi.com/v3/latest?apikey=${apiKey}&currencies=${selectedToConvertCurrency}&base_currency=${selectedBaseCurrency}`
@@ -42,18 +45,17 @@ function convertCurrency() {
       })
       .catch((error) => {
         console.error('Błąd:', error)
+        error.innerHTML = `Błąd połączenia z bazą`
       })
   } else {
-    alert('Proszę podać wartość do przeliczenia.')
+    error.innerHTML = `Proszę podać wartość do przeliczenia`
   }
 }
 
 function allCurrencies(){
-  const allCurrencies = ["USD", "NOK", "AUD", "JPY", "PLN", "UAH", "HUF", "CZK", "CHF", "EUR"]
-  const allCurrenciesString = allCurrencies.join("%2C")
-  const allCurrenciesUrl = `https://api.currencyapi.com/v3/latest?apikey=${apiKey}&currencies=${allCurrenciesString}&base_currency=PLN`
-  console.log(allCurrenciesUrl)
-  fetch(allCurrenciesUrl)
+  const allCurrencies = ["USD", "NOK", "AUD", "CAD", "GPB", "CHF", "DKK", "SEK", "CZK", "ISK", "EEK", "JPY", "HUF", "RUR", "UAH", "BGN", "PLN", "TRL", "ROL", "MDL", "MKD", "CSD", "BAM", "ALL", "EUR"]
+  for(let i = 0; i < allCurrencies.length; i++){
+  fetch(`https://api.currencyapi.com/v3/latest?apikey=${apiKey}&currencies=${allCurrencies[i]}&base_currency=PLN`)
       .then((response) => {
         if (response.ok) {
           return response.json()
@@ -62,16 +64,16 @@ function allCurrencies(){
         }
       })
       .then((data) => {
-        for(let i = 0; i < allCurrencies.length; i++){
-          let temp = ""
-          temp = document.getElementById(allCurrencies[i])
-          temp.innerHTML = (1 / data.data[allCurrencies[i]].value).toFixed(2)+" PLN"
-        }
+        let kurs = ""
+        kurs = document.getElementById(allCurrencies[i])
+        kurs.innerHTML = (1 / data.data[allCurrencies[i]].value).toFixed(2)+" PLN"
       })
       .catch((error) => {
         console.error('Błąd:', error)
-        errorKurs.innerHTML = "Wystąpił błąd pobierania walut"
+        errorKurs = document.getElementById(allCurrencies[i])
+        errorKurs.innerHTML = "Błąd danych"
       })
+    }
 }
 
 allCurrencies()
